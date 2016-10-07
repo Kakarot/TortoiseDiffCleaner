@@ -64,11 +64,11 @@ namespace TortoiseDiffCleaner
                 StringBuilder builder = new StringBuilder();
                 foreach (String str in doubleCheck)
                 {
-                    String strippedFile = System.IO.Path.GetFileName(str);
+                    String strippedFile = System.IO.Path.GetFileNameWithoutExtension(str)+"_DeDuped"+System.IO.Path.GetExtension(str);
                     builder.AppendLine(strippedFile);
 
                 }
-                MessageBox.Show("The following files have been converted to .patch files:\n\n" + builder.ToString()
+                MessageBox.Show("Cleanse successful! The following files have been created as .patch files:\n\n" + builder.ToString()
                     + "\n\nThese files are located in the same directory as their respective source file counterparts, which is:\n\n" +
                     System.IO.Path.GetDirectoryName(filePaths[0]), "Success!");
             } //end 'if' statment to ensure valid files were dragged to UI
