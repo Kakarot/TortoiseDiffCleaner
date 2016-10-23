@@ -64,14 +64,36 @@ namespace TortoiseDiffCleaner
                 StringBuilder builder = new StringBuilder();
                 foreach (String str in doubleCheck)
                 {
-                    String strippedFile = System.IO.Path.GetFileNameWithoutExtension(str)+"_DeDuped"+System.IO.Path.GetExtension(str);
+                    String strippedFile = System.IO.Path.GetFileNameWithoutExtension(str) + "_DeDuped" + System.IO.Path.GetExtension(str);
                     builder.AppendLine(strippedFile);
 
                 }
                 MessageBox.Show("Cleanse successful! The following files have been created as .patch files:\n\n" + builder.ToString()
-                    + "\n\nThese files are located in the same directory as their respective source file counterparts, which is:\n\n" +
-                    System.IO.Path.GetDirectoryName(filePaths[0]), "Success!");
+                    + "\n\nThese files are located in the same directory as their respective source file counterparts.", "Success!");
             } //end 'if' statment to ensure valid files were dragged to UI
+        }
+
+        private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAbout formAbout = new FormAbout();
+            Enabled = false;
+            formAbout.ShowDialog();
+            Enabled = true;
+        }
+
+        private void howToUseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+@"This is a very basic GUI application that addresses the occasional issue where TortoiseSVN creates patches with duplicate entries.
+
+Drag and Drop your diff or patch files onto the UI.
+A new file will automatically be generated (without the duplicate entries) into the same directory as the source file. It will not overwrite the original diff.
+
+Selecting and dropping multiple files onto the UI works as well.
+
+The target platform is:
+
+Windows 64 bit architecture with minimum.Net Framework 4.5.1", "Instructions:");
         }
     }
 }
